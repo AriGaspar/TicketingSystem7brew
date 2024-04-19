@@ -2,21 +2,8 @@
     <div class="h-screen bg-white flex flex-col px-40 gap-4">
       
 <!-- MAIN TITLE (TICKET VIEW) -->
-      <div class="flex items-center flex-row h-16 justify-between m-6">
-        <h1 class="text-3xl main-title">Ticket View</h1>
-        <button class="bg-custom-red-wine milkstore-text text-xl w-36 h-15 hover:bg-red-500 text-white font-bold py-2 px-4 inline-flex items-center justify-center">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                width="20px" height="20px" viewBox="0 0 156.199 156.199"
-                xml:space="preserve">
-                <g>
-                    <path style="fill:#ffffff;" d="M102.496,45.204h-2.499v-0.012l-77.613-0.368l32.958-32.959l-8.277-8.28L0,50.65l47.882,47.889
-                        l8.28-8.28l-33.719-33.73l71.642,0.346v0.04h8.417c23.151,0,41.993,18.838,41.993,41.997c0,23.151-18.842,41.992-41.993,41.992H0
-                        v11.711h102.496c29.613,0,53.703-24.09,53.703-53.703C156.199,69.293,132.109,45.204,102.496,45.204z"/>
-                </g>
-            </svg>
-            <span class="pl-2">Return</span>
-        </button>
-      </div>
+<!-- <div class="flex items-center flex-row h-16 justify-between mt-6 mb-6"> -->
+      <MainTitleComp :title="'Ticket View'"/>
       <!-- TICKET NUMBER -->
       <div class="text-card flex justify-center">TICKET NUMBER: #3230</div>
       <div class="flex w-full flex-row gap-4">
@@ -102,9 +89,9 @@
 
         </div>
 <!-- SIDEBAR -->
-        <div class="flex flex-col text-white w-auto milkstore-text gap-4 justify-center" >
+        <div class="flex flex-col text-white w-auto milkstore-text gap-4 justify-center items-end" >
           <!-- REQUESTER INFO -->
-          <div id="requester-info" class="p-2 h-25 rounded bg-custom-700 flex flex-col text-lg">
+          <div id="requester-info" class="p-2 h-25 w-2/3 rounded bg-custom-700 flex flex-col text-lg">
             
             <div id="requester-header" class="flex flex-row justify-center ">
               <span class="pt-1 pl-3  w-1/3 justify-center">
@@ -134,7 +121,7 @@
 
           </div>
           <!-- TICKET INFO -->
-          <div id="ticket-info" class="h-auto bg-blue-200 bg-custom-700 rounded flex flex-col">
+          <div id="ticket-info" class="h-auto w-2/3 bg-blue-200 bg-custom-700 rounded flex flex-col">
             
             <div id="ticket-info-header" class="flex flex-row justify-center pt-3">
               <span class="pl-6 w-1/3 justify-center">
@@ -182,7 +169,7 @@
 
           </div>
           <!-- SIMILAR TICKETS -->
-          <div id="similar-tickets" class="h-auto bg-blue-200 bg-custom-700 rounded flex flex-col">
+          <div id="similar-tickets" class="h-auto w-2/3 bg-blue-200 bg-custom-700 rounded flex flex-col">
             
             <div id="similar-tickets-header" class="flex flex-row justify-center pt-3">
               <span class="pl-6 w-1/3 justify-center">
@@ -243,46 +230,23 @@
     font-family: 'Magneton';
     font-size: 90px;
 }
-// 8A2432
+
 </style>
 
 <style lang="css">
-  .text-card{
-    font-family: 'Milkstore' !important;
-    font-size: 23px !important;
-    background-color: #8A2432;
-    color: white;
-    font-size: medium;
-    max-width: 190px;
-    padding: 10px;
-    border: none;
-  }
-  .dot {
-    height: 13px;
-    width: 13px;
-    background-color: #c22b3f;
-    border-radius: 50%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .main-content > *{
-    font-family: 'Milkstore04';
-  }
-  .milkstore-text{
-    font-family: 'Milkstore';
-  }
-  .milkstore04-text{
-    font-family: 'Milkstore04';
-  }
-  .text-xxs{
-    font-size: 10px;
-  }
+  @import "../src/assets/css/general-styles.css";
+  
 
 </style>
 
 <script>
+import MainTitleComp from '../src/components/MainTitleComp.vue';
+
+
 export default {
+  components: {
+    MainTitleComp
+  },
   data() {
     return {
       isOpen: false,
@@ -297,8 +261,10 @@ export default {
     toggleDropdown(type) {
       if(type == "status"){
         this.isOpen = !this.isOpen;
+        this.isOpenEmp = false;
       }else{
         this.isOpenEmp = !this.isOpenEmp;
+        this.isOpen = false;
       }
     },
     selectOption(option , type) {
